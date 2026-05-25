@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>株式会社Enjin 採用説明会</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Noto+Serif+JP:wght@400;700;900&family=Montserrat:wght@300;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- 進捗バー -->
+<div class="progress-bar"><div class="progress-bar__fill" id="progressFill"></div></div>
+
+<!-- ナビゲーションヒント -->
+<div class="nav-hint" id="navHint">クリック / ↓ / Space で次へ</div>
+
+<!-- サイドバー（編集モード時に表示） -->
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <div class="sidebar-brand">
+      <span class="brand-mark"></span>
+      <span class="brand-text">Enjin Deck</span>
+      <span class="brand-tag">EDIT</span>
+    </div>
+    <button class="sidebar-toggle" id="sidebarToggle" title="サイドバー折りたたみ">‹</button>
+  </div>
+  <div class="sidebar-actions">
+    <button class="btn-primary" id="enterPresent">▶ プレゼンテーション開始</button>
+    <p class="sidebar-hint">クリックで該当スライドへ／目のアイコンで本番に含めるか切替</p>
+  </div>
+  <ul class="thumb-list" id="thumbList"></ul>
+  <div class="sidebar-foot">
+    <span class="mono" id="visibleCount">0 / 0 表示</span>
+  </div>
+</aside>
+
+<!-- 上部ツールバー（常時） -->
+<div class="toolbar" id="toolbar">
+  <button class="tool-btn" id="exitPresent" title="プレゼン終了 (Esc)">✕ 終了</button>
+  <div class="tool-counter mono"><span id="slideNow">1</span> <span class="slash">/</span> <span id="slideTotal">22</span></div>
+  <button class="tool-btn" id="printBtn" title="印刷 / PDFで保存">⎙</button>
+  <button class="tool-btn" id="fullscreenBtn" title="フルスクリーン (F)">⛶</button>
+</div>
+
+<main id="deck">
+
+  <!-- 01. 表紙 -->
+  <section class="slide slide--cover" data-slide="1">
+    <div class="cover-bg">
+      <img src="assets/cover-bg.jpg" alt="" class="cover-bg-img" onerror="this.remove()">
+    </div>
+    <div class="cover-overlay"></div>
+    <div class="cover-vignette"></div>
+    <div class="cover-circle"></div>
+    <div class="cover-logo">Enjin</div>
+    <div class="cover-content">
+      <p class="cover-sub">株式会社Enjin</p>
+      <h1 class="cover-title">会社説明会</h1>
+    </div>
+  </section>
+
+  <!-- 02. 自己紹介 -->
+  <section class="slide slide--profile" data-slide="2">
+    <div class="section-label">PROFILE</div>
+    <div class="profile-wrap">
+      <div class="profile-photo">
+        <div class="photo-placeholder">PROFILE<img src="assets/profile-tetsuka.jpg" alt="手塚朱音" onerror="this.remove()"></div>
+      </div>
+      <div class="profile-info">
+        <p class="profile-dept">経営企画部　新卒採用担当 / 広報</p>
+        <h2 class="profile-name">手塚朱音</h2>
+        <p class="profile-name-en">AKANE TETSUKA</p>
+      </div>
+    </div>
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-points">
+        <div class="tp"><span class="tp-label tp-top">東京都出身</span><span class="tp-dot"></span></div>
+        <div class="tp"><span class="tp-dot"></span><span class="tp-label tp-bottom">拓殖大学卒業</span></div>
+        <div class="tp"><span class="tp-label tp-top">新卒で株式会社Enjinへ入社</span><span class="tp-dot"></span></div>
+        <div class="tp"><span class="tp-dot"></span><span class="tp-label tp-bottom">人事部：新卒採用/広報担当</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03. コンセプトムービー -->
+  <section class="slide slide--video" data-slide="3">
+    <div class="video-frame">
+      <video class="video-el" data-caption="コンセプトムービー" preload="metadata" playsinline>
+        <source src="assets/video-concept.mp4" type="video/mp4">
+      </video>
+      <div class="video-placeholder" id="video1">
+        <div class="play-btn">▶</div>
+        <p class="video-caption">コンセプトムービー</p>
+        <p class="video-sub">クリックで再生</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04. 会社概要 扉 -->
+  <section class="slide slide--chapter" data-slide="4">
+    <div class="chapter-inner">
+      <div class="chapter-band">
+        <span class="chapter-num">01.</span>
+        <h2 class="chapter-title">会社概要</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05. 会社概要 -->
+  <section class="slide slide--about" data-slide="5">
+    <!-- 本田社長 写真を背景全面に -->
+    <div class="about-photo-bg">
+      <img src="assets/ceo-honda.jpg" alt="" onerror="this.remove()">
+    </div>
+    <div class="about-photo-overlay"></div>
+
+    <div class="section-label">ABOUT ENJIN</div>
+
+    <!-- 左側パネル：情報を縦積み -->
+    <div class="about-panel">
+      <div class="about-grid">
+        <div class="about-card about-logo">
+          <div class="enjin-logo-black">Enjin</div>
+        </div>
+        <div class="about-card about-info">
+          <div class="info-row"><span class="info-key">事業内容</span><span class="info-val">PR/不動産/金融/AI/観光</span></div>
+          <div class="info-row"><span class="info-key">資本金</span><span class="info-val">17億7,930万円<small>（準備金を含む）</small></span></div>
+          <div class="info-row"><span class="info-key">証券コード</span><span class="info-val">7370</span></div>
+        </div>
+      </div>
+      <div class="history">
+        <div class="history-line"></div>
+        <div class="history-points">
+          <div class="hp">
+            <span class="hp-year">2006</span>
+            <span class="hp-dot hp-dot--start"></span>
+            <span class="hp-label hp-label--bottom">大阪にて<br><strong>創業</strong></span>
+          </div>
+          <div class="hp">
+            <span class="hp-label hp-label--top"><strong>東京銀座へ</strong><br>本社移転</span>
+            <span class="hp-dot"></span>
+            <span class="hp-year hp-year--bottom">2010</span>
+          </div>
+          <div class="hp">
+            <span class="hp-year">2021</span>
+            <span class="hp-dot"></span>
+            <span class="hp-label hp-label--bottom">東証マザーズ<strong>上場</strong><br><small>（現グロース市場）</small></span>
+          </div>
+          <div class="hp">
+            <span class="hp-label hp-label--top">AZ.WORLDCOM<br>JAPAN <strong>買収</strong></span>
+            <span class="hp-dot"></span>
+            <span class="hp-year hp-year--bottom">2023</span>
+          </div>
+          <div class="hp">
+            <span class="hp-year">2026</span>
+            <span class="hp-dot"></span>
+            <span class="hp-label hp-label--bottom"><strong>4事業の<br>子会社</strong>を設立</span>
+          </div>
+        </div>
+      </div>
+      <div class="sales-row">
+        <div class="sales-box">
+          <span class="sales-tag">年間売上高</span>
+          <span class="sales-num"><strong>32.6</strong>億円</span>
+        </div>
+        <div class="sales-arrow">⇒</div>
+        <div class="sales-box">
+          <span class="sales-tag">5年後</span>
+          <span class="sales-num"><strong>100</strong>億円へ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右下：本田社長のネームクレジット -->
+    <div class="ceo-credit">
+      <p class="ceo-role">代表取締役社長　グループCEO兼COO</p>
+      <p class="ceo-name">本田幸大</p>
+      <p class="ceo-name-en">KODAI HONDA</p>
+    </div>
+  </section>
+
+  <!-- 06. 事業内容 扉 -->
+  <section class="slide slide--chapter" data-slide="6">
+    <div class="chapter-inner">
+      <div class="chapter-band">
+        <span class="chapter-num">02.</span>
+        <h2 class="chapter-title">事業内容</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07. 事業内容詳細 -->
+  <section class="slide slide--business" data-slide="7">
+    <div class="business-header">
+      <span class="biz-tag">Enjinが手がけるPR</span>
+      <h2 class="biz-title"><span class="hl">経営者の物語</span>に焦点を当てたPR支援</h2>
+    </div>
+    <div class="biz-flow">
+      <div class="biz-step">
+        <p class="biz-step-title">全国の<span class="hl">経営者</span>や<br><span class="hl">オーナー</span>が、</p>
+        <div class="biz-img"><div class="photo-placeholder">経営者<img src="assets/biz-1-keieisha.jpg" alt="" onerror="this.remove()"></div></div>
+        <p class="biz-step-caption">担当が経営者を探してPRをご提案</p>
+      </div>
+      <div class="biz-arrow">→</div>
+      <div class="biz-step">
+        <p class="biz-step-title"><span class="logo-inline">Enjin</span>の持つ<br><span class="hl">メディアや媒体</span>を通じて、</p>
+        <div class="biz-img"><div class="photo-placeholder">取材<img src="assets/biz-2-shuzai.jpg" alt="" onerror="this.remove()"></div></div>
+        <p class="biz-step-caption">経営者に取材を実施</p>
+      </div>
+      <div class="biz-arrow">→</div>
+      <div class="biz-step">
+        <p class="biz-step-title">その魅力を<br>世の中へ発信する</p>
+        <div class="biz-img"><div class="photo-placeholder">放送<img src="assets/biz-3-housou.jpg" alt="" onerror="this.remove()"></div></div>
+        <p class="biz-step-caption">制作されたら公開！</p>
+      </div>
+    </div>
+    <p class="biz-footer">★入社1年目から、<span class="hl">一気通貫して経営者とお仕事</span>ができます！</p>
+  </section>
+
+  <!-- 08. 事業概要ムービー（賢者.TV） -->
+  <section class="slide slide--video" data-slide="8">
+    <div class="video-frame">
+      <iframe class="video-iframe" src="about:blank" data-src="https://www.kenja.tv/president/det2h3zb.html" allow="autoplay; fullscreen" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="video-placeholder" id="video2">
+        <div class="play-btn">▶</div>
+        <p class="video-caption">事業概要ムービー</p>
+        <p class="video-sub">クリックで再生（賢者.TV）</p>
+        <a class="video-external" href="https://www.kenja.tv/president/det2h3zb.html" target="_blank" rel="noopener">↗ 別ウィンドウで開く</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09. Enjinで得られる力 -->
+  <section class="slide slide--skills" data-slide="9">
+    <div class="section-label">3 SKILLS</div>
+    <h2 class="skills-title">Enjinで得られる3つのチカラ</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-point">POINT<br><strong>01</strong></span>
+        <p class="skill-sub">AI時代でも勝ち残る</p>
+        <div class="skill-big">営業力</div>
+        <p class="skill-desc">決裁者に直接会って<br>感情を動かすのが、<br>Enjin流の営業。<br>愛嬌・感性・クロージング、<br>どれもが一生涯の武器となる</p>
+      </div>
+      <div class="skill-card">
+        <span class="skill-point">POINT<br><strong>02</strong></span>
+        <p class="skill-sub">人として立派な</p>
+        <div class="skill-big">人間力</div>
+        <p class="skill-desc">経営者の<br>「広報パートナー」として<br>相応しい人間力は<br>営業現場で研磨され、<br>優れた生き様へ変わっていく</p>
+      </div>
+      <div class="skill-card">
+        <span class="skill-point">POINT<br><strong>03</strong></span>
+        <p class="skill-sub">正当に獲得できる</p>
+        <div class="skill-big">経済力</div>
+        <p class="skill-desc">出自や年次に左右されない<br>評価制度を採用しており、<br>成果に応じた正当な報酬を<br>獲得できる<br><span class="hl">★給与：300,000円〜<br>＋成果給（上限なし）</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. 考え方/文化 扉 -->
+  <section class="slide slide--chapter" data-slide="10">
+    <div class="chapter-inner">
+      <div class="chapter-band">
+        <span class="chapter-num">03.</span>
+        <h2 class="chapter-title">考え方/文化</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. 考え方/文化 詳細 -->
+  <section class="slide slide--philosophy" data-slide="11">
+    <div class="section-label">PHILOSOPHY</div>
+    <div class="philo-block">
+      <span class="philo-tag">PURPOSE（存在意義）</span>
+      <p class="philo-body">社会の役に立つ立派な人間を<br>一人でも多く輩出する</p>
+    </div>
+    <div class="philo-block">
+      <span class="philo-tag">CULTURE（文化）</span>
+      <p class="philo-body">"<span class="hl">OHANA</span>"</p>
+      <p class="philo-small">＝精神的・経済的に自立した結び付き</p>
+    </div>
+  </section>
+
+  <!-- 12. 福利厚生 -->
+  <section class="slide slide--benefit" data-slide="12">
+    <div class="section-label">BENEFIT</div>
+    <div class="benefit-wrap">
+      <div class="benefit-headline">
+        <h2>社員の活躍や成長を<br>サポートする<br><span class="hl">制度がたくさん！</span></h2>
+      </div>
+      <div class="benefit-grid" id="benefitGrid">
+        <!-- Group 1 -->
+        <div class="benefit-card" data-group="1"><span class="b-num">01</span><span class="b-name">親孝行休暇</span><p class="b-desc">年に2度、親御さんの誕生日（または命日）に特別休暇の付与と帰省の交通費を補助（5〜8割）します。</p></div>
+        <div class="benefit-card" data-group="1"><span class="b-num">02</span><span class="b-name">宣言制度</span><p class="b-desc">仕事の成果に関する高い目標を宣言し、達成の暁には会社からご褒美を貰える制度。</p></div>
+        <div class="benefit-card" data-group="1"><span class="b-num">03</span><span class="b-name">OHANA旅</span><p class="b-desc">有給を取得してメンバー同士で旅行する場合、旅行にかかわる補助金が支給されます。</p></div>
+        <div class="benefit-card" data-group="1"><span class="b-num">04</span><span class="b-name">オハナビルディング</span><p class="b-desc">社員同士の交流を図るイベントをたくさんお届け。夏祭りやBBQなど社員の仲が深まります。</p></div>
+        <!-- Group 2 -->
+        <div class="benefit-card" data-group="2"><span class="b-num">05</span><span class="b-name">OHANAカフェ</span><p class="b-desc">オフィスにカフェを完備。本格的なドリンクをEnjin社員は50円〜と安価に利用できます。</p></div>
+        <div class="benefit-card" data-group="2"><span class="b-num">06</span><span class="b-name">近距離手当</span><p class="b-desc">会社から徒歩30分圏内に一人暮らしをする場合、家賃を一部補助します。</p></div>
+        <div class="benefit-card" data-group="2"><span class="b-num">07</span><span class="b-name">Gym手当</span><p class="b-desc">健康はビジネスパーソンにとっては重要な要素。ジム代を一部補填いたします。</p></div>
+        <!-- Group 3 -->
+        <div class="benefit-card" data-group="3"><span class="b-num">08</span><span class="b-name">先輩メシ</span><p class="b-desc">入社してから初任給の前日まで、毎日先輩とランチができる制度です。</p></div>
+        <div class="benefit-card" data-group="3"><span class="b-num">09</span><span class="b-name">新人研修</span><p class="b-desc">入社してからの一定期間は研修。社会人基礎やビジネススキル、PR業界の知識まで学べます。</p></div>
+        <div class="benefit-card" data-group="3"><span class="b-num">10</span><span class="b-name">ホテル優待</span><p class="b-desc">全国120箇所の一流ホテルに最大80%offで泊まることができます。社員の家族も利用可。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13. 会社の雰囲気 -->
+  <section class="slide slide--event" data-slide="13">
+    <div class="event-collage">
+      <div class="event-card event-card--label"><span class="event-label">EVENT</span></div>
+      <div class="event-card"><div class="photo-placeholder">食事<img src="assets/event-1.jpg" alt="" onerror="this.remove()"></div></div>
+      <div class="event-card"><div class="photo-placeholder">乾杯<img src="assets/event-2.jpg" alt="" onerror="this.remove()"></div></div>
+      <div class="event-card"><div class="photo-placeholder">集会<img src="assets/event-3.jpg" alt="" onerror="this.remove()"></div></div>
+      <div class="event-card event-card--big"><div class="photo-placeholder">全社員集合<img src="assets/event-5-shugo.jpg" alt="" onerror="this.remove()"></div></div>
+      <div class="event-card"><div class="photo-placeholder">内定<img src="assets/event-6.jpg" alt="" onerror="this.remove()"></div></div>
+      <div class="event-card"><div class="photo-placeholder">ランチ<img src="assets/event-7.jpg" alt="" onerror="this.remove()"></div></div>
+      <div class="event-card"><div class="photo-placeholder">体育祭<img src="assets/event-8.jpg" alt="" onerror="this.remove()"></div></div>
+      <div class="event-card"><div class="photo-placeholder">NY<img src="assets/event-9-ny.jpg" alt="" onerror="this.remove()"></div></div>
+      <div class="event-card"><div class="photo-placeholder">イベント<img src="assets/event-10.jpg" alt="" onerror="this.remove()"></div></div>
+      <div class="event-watermark">Enjin MOMENTS</div>
+      <div class="event-corner-label">NEW YORK</div>
+    </div>
+  </section>
+
+  <!-- 14. 求める人物像 扉 -->
+  <section class="slide slide--chapter" data-slide="14">
+    <div class="chapter-inner">
+      <div class="chapter-band">
+        <span class="chapter-num">04.</span>
+        <h2 class="chapter-title">求める人物像</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15. 求める人物像 詳細 -->
+  <section class="slide slide--persona" data-slide="15">
+    <div class="persona-bg"><div class="photo-placeholder">空と街<img src="assets/persona-bg.jpg" alt="" onerror="this.remove()"></div></div>
+    <div class="persona-overlay">
+      <h2 class="persona-title">未来の"<span class="hl">キ</span>"業家を<br>待っています</h2>
+      <div class="persona-list">
+        <p>社員一人ひとりが</p>
+        <p><span class="persona-pill">『企業家』</span> として、会社や事業のマネジメントを担う道</p>
+        <p><span class="persona-pill">『起業家』</span> として、新たな事業創出や独立を目指す道</p>
+        <p><span class="persona-pill">『奇業家』</span> として、常識にとらわれないワークスタイルを実現する道</p>
+        <p class="persona-foot">など、<strong>仕事を通じて人生を豊かにする仲間</strong>を待っています。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16. さいごに 扉 -->
+  <section class="slide slide--chapter" data-slide="16">
+    <div class="chapter-inner">
+      <div class="chapter-band">
+        <span class="chapter-num">05.</span>
+        <h2 class="chapter-title">さいごに</h2>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17. クイズ -->
+  <section class="slide slide--quiz" data-slide="17">
+    <div class="quiz-bigQ">Q</div>
+    <h2 class="quiz-q">日本に会社は<br><span class="hl">何社</span>あるでしょう？</h2>
+  </section>
+
+  <!-- 18. 答え -->
+  <section class="slide slide--answer" data-slide="18">
+    <div class="answer-fraction">
+      <div class="ans-top"><span class="hl">1</span>社</div>
+      <div class="ans-divider"></div>
+      <div class="ans-bottom">495万社</div>
+    </div>
+    <p class="answer-note">※国税庁「法人番号公表サイト」掲載企業総数参照（2024年12月末時点）</p>
+  </section>
+
+  <!-- 19. ご縁探し -->
+  <section class="slide slide--message" data-slide="19">
+    <div class="message-circle"></div>
+    <h2 class="message-text">就活は、「<span class="hl">ご縁探し</span>」</h2>
+  </section>
+
+  <!-- 20. 未来を一緒に -->
+  <section class="slide slide--message" data-slide="20">
+    <div class="message-circle"></div>
+    <h2 class="message-text">一緒に未来を作っていく<br><span class="hl">ご縁</span> があれば嬉しいです</h2>
+  </section>
+
+  <!-- 21. 選考情報 -->
+  <section class="slide slide--recruit" data-slide="21">
+    <h2 class="recruit-title">選考でお待ちしてます！</h2>
+    <div class="recruit-grid">
+      <div class="recruit-left">
+        <span class="recruit-tag">募集要項<br><small>(2027/2028卒)</small></span>
+        <p class="recruit-line"><strong>募集職種：</strong><span class="hl">総合職(営業/ほか)</span></p>
+        <p class="recruit-line"><strong>勤務地：</strong><span class="hl">東京都中央区銀座</span></p>
+        <p class="recruit-line"><strong>給与：</strong><span class="hl">300,000円〜＋賞与年2回インセンティブ</span></p>
+        <span class="recruit-tag">選考フロー</span>
+        <div class="flow">
+          <div class="flow-step">説明会</div>
+          <div class="flow-step">書類選考</div>
+          <div class="flow-step">一次選考</div>
+          <div class="flow-step">二次選考</div>
+          <div class="flow-step">最終選考</div>
+        </div>
+      </div>
+      <div class="recruit-right">
+        <p class="qr-label">&lt;27卒アンケート&gt;</p>
+        <div class="qr-placeholder">QR CODE<img src="assets/qr-27sotsu.png" alt="27卒アンケート" onerror="this.remove()"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 22. 結び -->
+  <section class="slide slide--end" data-slide="22">
+    <h2 class="end-text">ありがとうございました！</h2>
+    <div class="end-logo">Enjin</div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
